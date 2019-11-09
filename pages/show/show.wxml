@@ -1,0 +1,24 @@
+<!--pages/show/show.wxml-->
+<!-- <view class="banner" style="padding:20px 0px; height: 120px; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.lewagon.com/api/v1/cities/shenzhen/cover?width=1200);">
+  <view class="h1">{{title}}</view>
+  <view class="p">All stories</view>
+  <navigator class="btn btn-flat" url="/pages/post/post">Write a post</navigator>
+</view> -->
+
+<view class="card-product">
+  <view class="card-product-infos">
+    <view class="h2">{{story.content}}</view>
+    <view class="p">{{story.name}}</view>
+  </view>
+</view>
+<view class="p">Comments:</view>
+<view class="card-product" wx:for="{{comments}}" wx:for-item="comment">
+  <view class="card-product-infos">
+    <view class="h2" wx:for-index="index">{{comment.content}}</view>
+    <view class="p">{{comment.name}}</view>
+    <view data-votes="{{comment.votes}}">Votes: {{comment.votes}}</view>
+    <view data-id="{{comment.id}}" data-votes="{{comment.votes}}" bindtap="voteComment" >+</view>
+    <view data-id="{{comment.id}}" data-votes="{{comment.votes}}" bindtap="devoteComment" >-</view>
+    <view data-id="{{comment.id}}" bindtap="deleteComment"> x </view>
+  </view>
+</view>

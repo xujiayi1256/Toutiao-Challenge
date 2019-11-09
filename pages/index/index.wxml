@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="banner" style="padding:20px 0px; height: 120px; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.lewagon.com/api/v1/cities/shenzhen/cover?width=1200);">
+  <view class="h1">{{title}}</view>
+  <view class="p">All stories</view>
+  <navigator class="btn btn-flat" url="/pages/post/post">Write a post</navigator>
+</view>
+
+<view class="card-product" wx:for="{{stories}}" wx:for-item="item">
+  <view class="card-product-infos" data-id="{{item.id}}" bindtap="showStory">
+    <view class="h2" wx:for-index="index">{{index+1}}. {{item.content}}</view>
+    <view class="p">{{item.name}}</view>
+  </view>
+</view>
