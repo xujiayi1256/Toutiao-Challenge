@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-const index_endpoint = 'https://cloud.minapp.com/oserve/v1/table/84988/record/'
+// const index_endpoint = 'https://cloud.minapp.com/oserve/v1/table/84988/record/'
 
 Page({
   data: {
@@ -41,6 +41,9 @@ Page({
     this.setData({
       title: wx.getStorageSync('story-title') || "Stories"
     })
+    let tableName = 'stories'
+    let Story = new wx.BaaS.TableObject(tableName)
+    Story.find().then(this.getResult)
   },
 
   //事件处理函数
@@ -78,19 +81,22 @@ Page({
       })
     }
 
-    const request = {
-      url: index_endpoint,
-      method: 'GET',
-      header: { 'Authorization': 'Bearer 7a82a2b76c38e309ae34ff3c83c87f8409748b0e' },
-      success: this.getResult
-    }
+    // const request = {
+    //   url: index_endpoint,
+    //   method: 'GET',
+    //   header: { 'Authorization': 'Bearer 7a82a2b76c38e309ae34ff3c83c87f8409748b0e' },
+    //   success: this.getResult
+    // }
 
     // Save reference to page
     // let page = this;
 
     // Your code from above defining the request JSON
-    wx.request(request);
-    
+    // wx.request(request);
+
+    // let tableName = 'stories'
+    // let Story = new wx.BaaS.TableObject(tableName)
+    // Story.find().then(this.getResult)
   },
   getUserInfo: function(e) {
     console.log(e)

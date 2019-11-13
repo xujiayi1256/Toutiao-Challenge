@@ -9,6 +9,7 @@
   <view class="card-product-infos">
     <view class="h2">{{story.content}}</view>
     <view class="p">{{story.name}}</view>
+    <view class="btn btn-flat" bindtap="showStory">Write a comment</view>
   </view>
 </view>
 <view class="p">Comments:</view>
@@ -17,8 +18,8 @@
     <view class="h2" wx:for-index="index">{{comment.content}}</view>
     <view class="p">{{comment.name}}</view>
     <view data-votes="{{comment.votes}}">Votes: {{comment.votes}}</view>
-    <view data-id="{{comment.id}}" data-votes="{{comment.votes}}" bindtap="voteComment" >+</view>
-    <view data-id="{{comment.id}}" data-votes="{{comment.votes}}" bindtap="devoteComment" >-</view>
-    <view data-id="{{comment.id}}" bindtap="deleteComment"> x </view>
+    <view data-id="{{comment.id}}" data-votes="{{comment.votes}}" bindtap="voteComment" >+  Upvote</view>
+    <view data-id="{{comment.id}}" data-votes="{{comment.votes}}" bindtap="devoteComment" >-  Downvote</view>
+    <view data-id="{{comment.id}}" bindtap="deleteComment">x  Delete Comment</view>
   </view>
 </view>

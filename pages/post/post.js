@@ -1,5 +1,5 @@
 // pages/post/post.js
-const create_endpoint = 'https://cloud.minapp.com/oserve/v1/table/84988/record/'
+// const create_endpoint = 'https://cloud.minapp.com/oserve/v1/table/84988/record/'
 Page({
 
   /**
@@ -10,34 +10,46 @@ Page({
   },
 
   formSubmit: function (event) {
-    console.log(event)
-    let story = event.detail.value
+    // console.log(event)
+    let data = event.detail.value
     const page = this;
 
-    wx.request({
-      url: create_endpoint,
-      method: 'POST',
-      header: {'Authorization': 'Bearer 7a82a2b76c38e309ae34ff3c83c87f8409748b0e'},
-      data: story,
-      success() {
-        // no need for response data
-        // reload index page when done
-        page.submitSuccess
-        wx.reLaunch({
-          url: '/pages/index/index',
-        })
-      }
-    })
+    // wx.request({
+    //   url: create_endpoint,
+    //   method: 'POST',
+    //   header: {'Authorization': 'Bearer 7a82a2b76c38e309ae34ff3c83c87f8409748b0e'},
+    //   data: data,
+    //   success() {
+    //     // no need for response data
+    //     // reload index page when done
+    //     // page.submitSuccess
+    //     wx.showToast({
+    //       title: 'Sucess',
+    //       icon: 'sucess'
+    //     })
+    //     wx.reLaunch({
+    //       url: '/pages/index/index',
+    //     })
+    //   }
+    // })
+
+    let tableName = 'stories'
+    let Story = new wx.BaaS.TableObject(tableName)
+    let story = Story.create()
+    story.set(data).save().then(this.submitSuccess)
   },
 
   submitSuccess(res) {
-    console.log(res)
+    // console.log(res)
     if (res.statusCode === 201) {
-      wx.navigateBack()
       wx.showToast({
         title: 'Sucess',
         icon: 'sucess'
       })
+      // wx.reLaunch({
+      //   url: '/pages/index/index',
+      // })
+      wx.navigateBack()
     }
   },
 
